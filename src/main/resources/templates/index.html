@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Sorter</title>
+</head>
+<body>
+<form action="/sort" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".txt" required>
+    <select name="sortType">
+        <option th:each="sortType : ${sortTypes}" th:value="${sortType}" th:text="${sortType}"></option>
+    </select>
+    <input type="submit" value="Sort">
+</form>
+</body>
+</html>

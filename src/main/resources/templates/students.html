@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Sorted Students</title>
+</head>
+<body>
+<form action="/download" method="post">
+  <p>Number of records: <span th:text="${#lists.size(students)}"></span></p>
+  <p>Sorting time: <input type="text" readonly="readonly" th:name="sortingTime" th:value="${sortingTime}"></p>
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Score</th>
+    </tr>
+    <tr th:each="student, i : ${students}">
+      <td th:text="${student.name}"></td>
+      <td th:text="${student.score}"></td>
+      <input type="hidden" th:name="'students[' + ${i.index} + '].name'" th:value="${student.name}">
+      <input type="hidden" th:name="'students[' + ${i.index} + '].score'" th:value="${student.score}">
+    </tr>
+  </table>
+  <button type="submit">Download Sorted Students</button>
+</form>
+<a href="/">Back</a>
+</body>
+</html>
